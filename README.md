@@ -19,20 +19,12 @@ The timer, theme, sound preference, and rewards are stored in the browser on thi
 GitHub Pages hosts the static app; Supabase provides anonymous sign-in, the shared leaderboard, and a server-side Gemini function. Setup requires a Supabase project:
 
 1. In Supabase, enable **Anonymous Sign-Ins** under Authentication providers.
-2. Run [`supabase/schema.sql`](./supabase/schema.sql) in the Supabase SQL Editor.
+2. Run [`schema.sql`](./schema.sql) in the Supabase SQL Editor.
 3. Protect anonymous sign-ins with CAPTCHA under **Authentication → Protection**. Create a Cloudflare Turnstile widget for your website hostname, set its secret in Supabase, and put its public site key in `backend-config.js`. The app requests a CAPTCHA token before creating an anonymous account.
 4. Add `GEMINI_API_KEY` under **Project Settings → Edge Functions → Secrets**. Keep the key in Supabase only; never commit it or put it in `backend-config.js`.
-5. Deploy the Edge Function with the Supabase CLI:
-
-   ```powershell
-   npx supabase login
-   npx supabase link --project-ref YOUR_PROJECT_REF
-   npx supabase functions deploy coach
-   ```
-
-   Optionally set `GEMINI_MODEL` as a Supabase secret; the function defaults to `gemini-3.5-flash-lite`.
+5. The Gemini coach Edge Function for the published site is already deployed. This flattened GitHub copy stores its source in `index.ts`; to redeploy with the Supabase CLI, first place it at `supabase/functions/coach/index.ts` in a local project. Optionally set `GEMINI_MODEL` as a Supabase secret; the function defaults to `gemini-3.5-flash-lite`.
 6. Put the Supabase **Project URL**, **publishable key**, and Turnstile **site key** in `backend-config.js`. These values are public browser configuration; never put the Gemini key, CAPTCHA secret, or a Supabase service-role/secret key in that file.
-7. Push this project to a GitHub repository on its `main` or `master` branch. In the repository settings, enable **Pages → Source: GitHub Actions**. The workflow at `.github/workflows/pages.yml` publishes the static site after a push.
+7. In repository Settings → Pages, choose **Deploy from a branch**, select `main` and `/(root)`, then save. GitHub Pages serves the static app from the repository root and publishes changes pushed to `main`.
 
 Leaderboard participation is optional. Only the chosen display name and score are public; joining creates a private anonymous account without an email address. Leaving deletes the profile and leaderboard session records. Clearing browser storage can make an anonymous account unrecoverable. Points are awarded by the client when it reports a completed timer, so they can be gamed; the leaderboard is for fun, not prizes or high-stakes competition.
 

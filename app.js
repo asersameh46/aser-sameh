@@ -173,7 +173,7 @@
   function Sidebar(props) {
     return h("aside", { className: "sidebar" },
       h("a", { className: "brand", href: "#overview", onClick: function (event) { event.preventDefault(); props.onNavigate("overview"); } },
-        h("span", { className: "brand-mark" }, h("img", { src: "assets/orbit-logo.svg", alt: "" })),
+        h("span", { className: "brand-mark" }, h("img", { src: "orbit-logo.svg", alt: "" })),
         h("span", { className: "brand-word" }, "Orbit")),
       h("div", { className: "sidebar-caption" }, "ORBIT FOCUS WORKSPACE"),
       h("nav", { className: "main-nav", "aria-label": "Main menu" },
@@ -213,7 +213,7 @@
     return h("section", { className: "orbit-card", "aria-label": "Orbit focus rewards card" },
       h("div", { className: "card-gloss" }),
       h("div", { className: "card-top" },
-        h("div", { className: "card-brand" }, h("span", { className: "card-brand-icon" }, h("img", { src: "assets/orbit-logo.svg", alt: "" })), h("span", null, "orbit")),
+        h("div", { className: "card-brand" }, h("span", { className: "card-brand-icon" }, h("img", { src: "orbit-logo.svg", alt: "" })), h("span", null, "orbit")),
         h("span", { className: "card-contactless", "aria-label": "Contactless" }, h("i"), h("i"), h("i"))),
       h("div", { className: "card-chip", "aria-label": "Card chip" },
         h("span", { className: "chip-line chip-line-one" }), h("span", { className: "chip-line chip-line-two" }),
@@ -531,7 +531,7 @@
               h("strong", null, "Designed for a calmer workday"),
               h("p", null, "Each palette keeps the same clear contrast and focus-friendly layout. Switch themes whenever you like.")))),
         h("section", { className: "brand-note" },
-          h("div", { className: "brand-note-logo" }, h("span", { className: "brand-mark" }, h("img", { src: "assets/orbit-logo.svg", alt: "" })), h("strong", null, "Orbit Focus")),
+          h("div", { className: "brand-note-logo" }, h("span", { className: "brand-mark" }, h("img", { src: "orbit-logo.svg", alt: "" })), h("strong", null, "Orbit Focus")),
           h("p", null, "A personal focus workspace for intentional work, thoughtful breaks, and small wins.")));
   }
 
